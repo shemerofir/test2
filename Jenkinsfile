@@ -23,7 +23,7 @@ pipeline{
                     properties([
                           
                         //Creating the parameters, make sure you have Active Choice plugin installed
-                        def RepoName=input( parameters:
+                        parameters([
 
                             [$class: 'ChoiceParameter', 
                                 //Single combo-box item select type of choice
@@ -68,7 +68,7 @@ pipeline{
                                     ]
                                 ]
                             ]
-                        )
+                        )]
                     ])
                 }           
             }
@@ -79,7 +79,7 @@ pipeline{
                 script{
                     properties{
 
-                        def BranchName=input( parameters:
+                         parameters([
                             //Cascade choice, means you can reference other choice values, like in this case, the REPO
                             //Also, re-runs this scripts every time the referenced choice value changes.
                             [$class: 'CascadeChoiceParameter', 
@@ -122,7 +122,7 @@ pipeline{
                                     ] 
                                 ]
                             ]
-                        )    
+                        )]    
                     }        
                 }           
             }
