@@ -103,7 +103,7 @@ agent none
                                             script: 
 
                                                     //Script for the branch, you can reference the previous script value witn the "REPO" variable
-                                                    def branchScript = """import groovy.json.JsonSlurper
+                                                    """import groovy.json.JsonSlurper
                                                     def getBranches = new URL("https://api.github.com/repos/$username/" + REPO + "/branches").openConnection();
                                                     def getRCBranches = getBranches.getResponseCode();
 
