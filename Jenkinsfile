@@ -1,15 +1,15 @@
 
 pipeline{
 
-    agent none
+    
 
     stages{
-
+        agent none
         stage('inputUser'){
 
             steps{
                 script{    
-                def Username=input (
+                     username = input (
                      parameters: [string(defaultValue: 'test', description: 'Enter User:', name: 'USER')] 
                 )}
 
@@ -17,7 +17,7 @@ pipeline{
         }
 
         stage('inputRepo'){
-
+            agent none
             steps{
                 script {
                     properties([
@@ -48,7 +48,7 @@ pipeline{
                                         //Calling local variable with the script as a string
                                         script: 
                                         """import groovy.json.JsonSlurper
-                                        def get = new URL("https://api.github.com/users/${params.USER}/repos").openConnection();
+                                        def get = new URL("https://api.github.com/users/$username/repos").openConnection();
                                         def getRC = get.getResponseCode();
 
                                         if (getRC.equals(200)) {
@@ -75,9 +75,10 @@ pipeline{
         }
 
         stage('inputBranch'){
+            agent none
             steps{
                 script{
-                    properties{
+                    properties([
 
                          parameters([
                             //Cascade choice, means you can reference other choice values, like in this case, the REPO
@@ -103,7 +104,7 @@ pipeline{
 
                                                     //Script for the branch, you can reference the previous script value witn the "REPO" variable
                                                     def branchScript = """import groovy.json.JsonSlurper
-                                                    def getBranches = new URL("https://api.github.com/repos/${params.USER}/" + REPO + "/branches").openConnection();
+                                                    def getBranches = new URL("https://api.github.com/repos/$username/" + REPO + "/branches").openConnection();
                                                     def getRCBranches = getBranches.getResponseCode();
 
                                                     if (getRCBranches.equals(200)) {
@@ -123,7 +124,7 @@ pipeline{
                                 ]
                             ]
                         ])    
-                    }        
+                    ])        
                 }           
             }
         }
