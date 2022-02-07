@@ -2,7 +2,7 @@
 pipeline{
 
     
-
+agent none
     stages{
         agent none
         stage('inputUser'){
