@@ -1,7 +1,8 @@
 
 pipeline{
 
-    agent
+    agent none
+
     stages{
 
         stage('inputUser'){
@@ -62,7 +63,7 @@ pipeline{
                                                 names.push(repo.name);
                                             }   
                                             return names;
-                                            }""";
+                                            }"""
                                         
                                     ]
                                 ]
@@ -132,6 +133,7 @@ pipeline{
 
 
         stage('checkout scm') {
+            agent any
             when{
                expression { Username!= 'null' && RepoName!='null' && BranchName!='null' }
             }
