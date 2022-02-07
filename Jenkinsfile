@@ -135,9 +135,7 @@ agent none
 
         stage('checkout scm') {
             agent any
-            when{
-               expression { $username!= 'null' && params.REPO!='null' && params.BRANCH!='null' }
-            }
+
             steps {
                 //Mkdir if not exist for the params.REPO
                 sh "mkdir -p ${params.REPO}"
