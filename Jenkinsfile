@@ -136,7 +136,7 @@ agent none
         stage('checkout scm') {
             agent any
             when{
-               expression { Username!= 'null' && RepoName!='null' && BranchName!='null' }
+               expression { params.USER!= 'null' && params.REPO!='null' && params.BRANCH!='null' }
             }
             steps {
                 //Mkdir if not exist for the params.REPO
