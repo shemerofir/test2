@@ -4,7 +4,7 @@ pipeline{
     
 agent none
     stages{
-        agent none
+
         stage('inputUser'){
 
             steps{
@@ -17,7 +17,7 @@ agent none
         }
 
         stage('inputRepo'){
-            agent none
+
             steps{
                 script {
                     properties([
@@ -75,7 +75,7 @@ agent none
         }
 
         stage('inputBranch'){
-            agent none
+
             steps{
                 script{
                     properties([
