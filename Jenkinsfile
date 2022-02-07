@@ -48,7 +48,7 @@ pipeline{
                                         //Calling local variable with the script as a string
                                         script: 
                                         """import groovy.json.JsonSlurper
-                                        def get = new URL("https://api.github.com/users/${Username}/repos").openConnection();
+                                        def get = new URL("https://api.github.com/users/${params.USER}/repos").openConnection();
                                         def getRC = get.getResponseCode();
 
                                         if (getRC.equals(200)) {
@@ -103,7 +103,7 @@ pipeline{
 
                                                     //Script for the branch, you can reference the previous script value witn the "REPO" variable
                                                     def branchScript = """import groovy.json.JsonSlurper
-                                                    def getBranches = new URL("https://api.github.com/repos/${Username}/" + REPO + "/branches").openConnection();
+                                                    def getBranches = new URL("https://api.github.com/repos/${params.USER}/" + REPO + "/branches").openConnection();
                                                     def getRCBranches = getBranches.getResponseCode();
 
                                                     if (getRCBranches.equals(200)) {
