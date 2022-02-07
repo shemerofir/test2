@@ -9,9 +9,9 @@ pipeline{
 
             steps{
                 script{    
-                def Username=input {
+                def Username=input (
                      parameters: [string(defaultValue: 'test', description: 'Enter User:', name: 'USER')] 
-                }}
+                )}
 
             }
         }
