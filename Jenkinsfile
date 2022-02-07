@@ -136,7 +136,7 @@ agent none
         stage('checkout scm') {
             agent any
             when{
-               expression { params.USER!= 'null' && params.REPO!='null' && params.BRANCH!='null' }
+               expression { $username!= 'null' && params.REPO!='null' && params.BRANCH!='null' }
             }
             steps {
                 //Mkdir if not exist for the params.REPO
@@ -146,7 +146,7 @@ agent none
                     //Pulling the git repo
                     git branch: "${params.BRANCH}", 
                         poll: false, 
-                        url: "https://github.com/${params.USER}/${params.REPO}.git"
+                        url: "https://github.com/$username/${params.REPO}.git"
                 }
             }
         }
